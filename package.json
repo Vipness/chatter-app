@@ -1,0 +1,20 @@
+{
+  "name": "chatting-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "keywords": [
+    "chatter"
+  ],
+  "author": "Vihara, Vipness",
+  "license": "ISC",
+  "dependencies": {
+    "http": "^0.0.1-security",
+    "socket.io": "^4.7.2",
+    "socket.io-client": "^4.7.2"
+  }
+}
