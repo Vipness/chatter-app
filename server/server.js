@@ -4,7 +4,7 @@ import clientController from './controller/clientController.js'
 
 const server = http.createServer();
 const io = new Server(server);
-const host = "127.0.0.1";
+const host = "0.0.0.0";
 const port = 3400;
 
 server.listen(port, host, () => {
@@ -20,7 +20,7 @@ io.on("connection", (socket) => {
 
     clientController.addClient(
         id,
-        new clientController.ChatterClient(id, clientHost, clientPort)
+        new clientController.ChatterClient(id, clientHost, clientPort, socket)
     );
 
     socket.on("disconnect", (socket2) => {
@@ -36,10 +36,10 @@ io.on("connection", (socket) => {
         const clientPort = chatter.port;
 
         console.log(`[C/MSG] ${clientHost}:${clientPort} > ${data}`)
-        for (socket in clientController.getChatters()) {
-            console.log("yes");
+
+        for (let chatterClient of clientController.getChatters().values()) {
+            chatterClient.socket.emit("serverMessage", `${clientHost}:${clientPort} > ${data}`);
         }
-        socket.emit("serverMessage", data);
     });
 });
 
