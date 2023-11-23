@@ -3,7 +3,7 @@ import readline from 'readline';
 
 let msgSent = true;
 let isConnected = false;
-const socket = io("http://159.69.158.154:3400/");
+const socket = io("http://<iphere>:3400/");
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
